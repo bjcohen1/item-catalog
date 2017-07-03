@@ -11,6 +11,7 @@ from database_setup import Base, Category, ListItem, User
 from flask import session as login_session
 import random
 import string
+import psycopg2
 
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
