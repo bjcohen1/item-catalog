@@ -27,7 +27,7 @@ app = Flask(__name__)
 app.config['Upload_Folder'] = Upload_Folder
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/item_catalog/item_catalog/item_catalog/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 engine = create_engine('postgresql://catalog:a!5MrD!b@52.3.235.134/catalog.db')
