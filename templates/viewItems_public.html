@@ -1,0 +1,25 @@
+{% extends 'base_public.html' %}
+
+    {% block content %}
+        <h1> {{category.name}} </h1>
+        Category created by: {{creator.name}}
+
+        <br>
+        <br>
+
+        {% for item in items %}
+
+            {{item.name}}
+            <br>
+            {{item.description}}
+
+            <br>
+
+            <img src = "{{item.picture_url}}"/>
+            <br>
+            <br>
+
+        {% endfor %}
+
+        <a href = "{{ url_for('listCategories') }}"> Back to Cateogry List </a>
+    {% endblock %}

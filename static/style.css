@@ -1,0 +1,10 @@
+.pagebox {
+    background-color: blue;
+    text-align: center;
+}
+
+.catlink{
+    color : white;
+    text-decoration: none;
+    font-size: 36px;
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <a href = '/login'> Sign-Up/Login </a>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

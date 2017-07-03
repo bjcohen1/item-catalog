@@ -1,0 +1,48 @@
+{% extends "base_loggedin.html" %}
+
+    {% block head %}
+    {% endblock %}
+
+    {% block content %}
+        <h1> {{category.name}} </h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+                <ul>
+                {% for message in messages %}
+                    <li> <strong> {{message}} </strong></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+    <!--Add a link to add a new item!-->
+        <a href = "{{url_for('newItem', category_id = category.id)}}">Add a New Item</a>
+
+        <br>
+        <br>
+
+        {% for item in items %}
+
+            {{item.name}}
+            <br>
+            {{item.description}}
+            <br>
+            <img src = "{{item.picture_url}}"/>
+
+            <br>
+
+            <a href = "{{url_for('editItem', category_id = item.category_id, item_id = item.id)}}"> Edit </a>
+
+            <br>
+
+            <a href = "{{url_for('deleteItem', category_id = item.category_id, item_id = item.id)}}"> Delete </a>
+
+            <br>
+            <br>
+
+        {% endfor %}
+
+        <a href = "{{ url_for('listCategories') }}"> Back to Cateogry List </a>
+    {% endblock %}
