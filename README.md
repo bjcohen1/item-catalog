@@ -1,29 +1,31 @@
 README for Item Catalog Developed for Full Stack Web Developer Nanodegree
 
-Latest Version: 6/23/2017
+Latest Version: 7/6/2017
 
-The purpose of this program is to set up an Item Catalog--the program can maintain lists of items organized by category.
+The purpose of this program is to set up an Item Catalog hosted on an AWS LightSail web server--the program can maintain lists of items organized by category.
 It also provides a permissions framework that only allows the creators of a specific item to edit or delete that item.
 
 Files included with this program:
 database_setup.py--contains the database setup that will support the backend of the item catalog using SQLAlchemy
 including tables for categories, items, as well as Users
-project_w_user.py--contains the python code necessary to perform CRUD operations on the database
-templates--contains all of the html templates necessary to render the item catalog using the Flask framework
+__init__.py--contains the python code necessary to link to the PSQL database and perform CRUD operations on the database
+templates--contains all of the html templates necessary to render the item catalog using the Flask framework. The database_setup.py 
+file contains decorator methods to allow the data from the database to be archieved in JSON format.
 
-The files also include a JSON file containing the client secret necessary for user logins.
+The files also include a JSON file containing the client secret necessary for user logins with Google.
 
-To run this program you will need to download Virtual Box and Vagrant to support the databases
-needed to use this program.  Using git you can clone all of the necessary files for this program from Udacity via 
-http://github.com/udacity/fullstack-nanodegree-vm fullstack
+The IP address of this project can be found at 52.3.235.134
 
-Once the above softwares are downloaded, start the virtual machine by typing vagrant up and log in to the 
-virtual machine by typing vagrant ssh.
-Type cd /vagrant and cd to 'catalog_2' to access the correct folder.
+The AWS LightSail server was configured by installing Apache2, Flask and PostgreSQL.
+To configure the app the app's .conf file was set to specify the IP address of the
+project, the WSGI script location for serving the app using Flask and customizations
+for apache2 error logs as well as aliases for file paths.
 
-To first set up the database run the database_setup.py file followed by running project_w_users.py.  At this point the
-item catalog will be running at localhost:5000.  The database_setup.py file contains decorator methods to allow the data
-from the database to be achieved in JSON format.
+The WSGI file to serve the Flask app was also configured to indicate where the
+app files are located.
+
+The server firewall was reconfigured to only allow ssh on port 2200 and only using RSA
+key authentication. 
 
 This catalog supports a number of manipulations of the database at the following urls:
 
@@ -46,5 +48,5 @@ of the item for the catalog.  The picture can be in the following file types:
 txt, pdf, png, jpg, jpeg, gif.
 
 Once logged in a user will see a link to logout, but can also do so by accessing 
-the url localhost:5000/gdisconnect
+the IP/gdisconnect.
 

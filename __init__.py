@@ -11,7 +11,6 @@ from database_setup import Base, Category, ListItem, User
 from flask import session as login_session
 import random
 import string
-import psycopg2
 
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
@@ -21,14 +20,14 @@ import json
 from flask import make_response
 import requests
 
-Upload_Folder = 'images'
+Upload_Folder = '/var/www/item_catalog/item_catalog/static/img'
 Allowed_Extensions = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 app.config['Upload_Folder'] = Upload_Folder
 
 CLIENT_ID = json.loads(
-    open('/var/www/item_catalog/item_catalog/item_catalog/client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/item_catalog/item_catalog/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 engine = create_engine('postgresql://catalog:a!5MrD!b@52.3.235.134/catalog.db')
@@ -78,7 +77,7 @@ def gconnect():
     code = request.data
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/item_catalog/item_catalog/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
@@ -393,7 +392,7 @@ def deleteItem(category_id, item_id):
         return redirect('/categories')
 
     if request.method == 'POST':
-        session.add(deleteItem)
+        session.delete(deleteItem)
         session.commit()
         flash("Item has been deleted")
         return redirect(url_for('viewItems',
@@ -405,6 +404,6 @@ def deleteItem(category_id, item_id):
                                deleteItem=deleteItem)
 
 if __name__ == '__main__':
-    app.secret_key = 'super_secret_key'
+    app.secret_key = '3aRz!dLq9Cx4F'
     app.debug = True
     app.run(host='0.0.0.0', port=2200)
